@@ -1,0 +1,60 @@
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\appsettings.Development.json
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\appsettings.json
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.exe
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.deps.json
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.runtimeconfig.json
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.runtimeconfig.dev.json
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\ref\Roofcare APIs.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Roofcare APIs.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Humanizer.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\System.Runtime.Caching.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.csprojAssemblyReference.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.GeneratedMSBuildEditorConfig.editorconfig
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.AssemblyInfoInputs.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.AssemblyInfo.cs
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.csproj.CoreCompileInputs.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.MvcApplicationPartsAssemblyInfo.cs
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.MvcApplicationPartsAssemblyInfo.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\staticwebassets\Roofcare APIs.StaticWebAssets.Manifest.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\staticwebassets\Roofcare APIs.StaticWebAssets.xml
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\scopedcss\bundle\Roofcare APIs.styles.css
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.RazorTargetAssemblyInfo.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.csproj.CopyComplete
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\ref\Roofcare APIs.dll
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.pdb
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.genruntimeconfig.cache
