@@ -10,8 +10,8 @@ using Roofcare_APIs.Data;
 namespace Roofcare_APIs.Migrations
 {
     [DbContext(typeof(RoofCareDbContext))]
-    [Migration("20201129070639_updated")]
-    partial class updated
+    [Migration("20201130071109_newmigration")]
+    partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,7 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ServiceType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("TotalCharge")
@@ -153,9 +154,6 @@ namespace Roofcare_APIs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<int>("OfferBy")
-                        .HasColumnType("int");
 
                     b.Property<string>("OfferDescription")
                         .HasColumnType("nvarchar(max)");
@@ -263,6 +261,12 @@ namespace Roofcare_APIs.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contact")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
@@ -337,25 +341,29 @@ namespace Roofcare_APIs.Migrations
 
             modelBuilder.Entity("Roofcare_APIs.Models.Offer", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.User", null)
+                    b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("Offers")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.OfferReport", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.Offer", null)
+                    b.HasOne("Roofcare_APIs.Models.Offer", "Offer")
                         .WithMany("OfferReports")
                         .HasForeignKey("OfferId");
 
                     b.HasOne("Roofcare_APIs.Models.User", null)
                         .WithMany("OfferReports")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Offer");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.SavedOffer", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.Offer", null)
+                    b.HasOne("Roofcare_APIs.Models.Offer", "Offer")
                         .WithMany("SavedOffers")
                         .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -366,21 +374,27 @@ namespace Roofcare_APIs.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Offer");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.UserProfession", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.Profession", null)
+                    b.HasOne("Roofcare_APIs.Models.Profession", "Profession")
                         .WithMany("UserProfessions")
                         .HasForeignKey("ProfessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Roofcare_APIs.Models.User", null)
+                    b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("UserProfessions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Profession");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.Offer", b =>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Roofcare_APIs.Data;
 using Roofcare_APIs.Services;
+using Roofcare_APIs.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,13 @@ namespace Roofcare_APIs.Controllers
         {
             _userService = new UserService(roofCareDbContext);
         }
-        [HttpGet]
-        public IActionResult Get()
+        [HttpPost]
+        [Route("LogInAuthorization")]
+        public IActionResult LogInAuthorization([FromBody] UserCredentialModel userCredential)
         {
-            return Ok(UserService.getUsers());
+            return Ok(UserService.UserAuthorizationAsync(userCredential));
         }
+
+
     }
 }

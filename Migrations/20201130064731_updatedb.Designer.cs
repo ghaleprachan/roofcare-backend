@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roofcare_APIs.Data;
 
 namespace Roofcare_APIs.Migrations
 {
     [DbContext(typeof(RoofCareDbContext))]
-    partial class RoofCareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201130064731_updatedb")]
+    partial class updatedb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,12 +261,6 @@ namespace Roofcare_APIs.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Contact")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
@@ -339,11 +335,11 @@ namespace Roofcare_APIs.Migrations
 
             modelBuilder.Entity("Roofcare_APIs.Models.Offer", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.User", "User")
+                    b.HasOne("Roofcare_APIs.Models.User", "AddedBy")
                         .WithMany("Offers")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("AddedBy");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.OfferReport", b =>
