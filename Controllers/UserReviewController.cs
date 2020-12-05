@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Roofcare_APIs.Data;
+using Roofcare_APIs.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +13,15 @@ namespace Roofcare_APIs.Controllers
     [ApiController]
     public class UserReviewController : ControllerBase
     {
+        private ReviewService _reviewService;
+        public UserReviewController(RoofCareDbContext roofCareDbContext)
+        {
+            _reviewService = new ReviewService(roofCareDbContext);
+        }
+        [HttpGet]
+        public IActionResult Get(string userId)
+        {
+            return Ok(_reviewService.GetUserReview(userId));
+        }
     }
 }
