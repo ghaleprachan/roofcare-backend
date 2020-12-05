@@ -26,6 +26,12 @@ namespace Roofcare_APIs.Controllers
             return Ok(UserService.UserAuthorizationAsync(userCredential));
         }
 
+        [HttpGet]
+        [Route("GetProfileDetails/{id}")]
+        public IActionResult GetProfileDetails(string id)
+        {
+            return Ok(UserService.GetProfileDetails(id));
+        }
 
     }
 }

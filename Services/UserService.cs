@@ -49,5 +49,39 @@ namespace Roofcare_APIs.Services
                 return Responses.AuthenticationResponse(false, ex.Message, null, null, null, null);
             }
         }
+
+        internal static object GetProfileDetails(string id)
+        {
+            try
+            {
+                var user = (from u in _roofCareDbContext.Users
+                            select new
+                            {
+                                u.Username,
+                                u.FullName,
+                                u.Gender,
+                                u.DOB,
+                                u.UserType,
+                                u.UserImage,
+                                u.About,
+                                u.Verified,
+                                u.Address,
+                                u.Contact,
+                                Professions = (from p in u.UserProfessions
+                                               select new
+                                               {
+                                                   p.Profession.ProfessionId,
+                                                   p.Profession.ProfessionName
+                                               }).ToList()
+                            })
+                            .ToList()
+                            .FirstOrDefault(x => x.Username.Equals(id, StringComparison.OrdinalIgnoreCase));
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }

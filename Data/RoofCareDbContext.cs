@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roofcare_APIs.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Roofcare_APIs.Data
 {
@@ -13,6 +9,7 @@ namespace Roofcare_APIs.Data
         {
 
         }
+        
 
         public DbSet<User> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -23,5 +20,10 @@ namespace Roofcare_APIs.Data
         public DbSet<Profession> Professions { get; set; }
         public DbSet<SavedOffer> SavedOffers { get; set; }
         public DbSet<UserProfession> UserProfessions { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+        }
     }
 }

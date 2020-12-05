@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Roofcare_APIs.Migrations
 {
-    public partial class updatedb : Migration
+    public partial class one : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,8 @@ namespace Roofcare_APIs.Migrations
                     UserType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Verified = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -47,9 +49,8 @@ namespace Roofcare_APIs.Migrations
                 {
                     BookingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VendorId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    ServiceType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookingToId = table.Column<int>(type: "int", nullable: false),
+                    ServiceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ServiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -64,17 +65,23 @@ namespace Roofcare_APIs.Migrations
                     CustomerAcceptance = table.Column<bool>(type: "bit", nullable: false),
                     PaidStatus = table.Column<bool>(type: "bit", nullable: false),
                     IssuedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    BookingByUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bookings", x => x.BookingId);
                     table.ForeignKey(
-                        name: "FK_Bookings_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Bookings_Users_BookingByUserId",
+                        column: x => x.BookingByUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Users_BookingToId",
+                        column: x => x.BookingToId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,17 +90,22 @@ namespace Roofcare_APIs.Migrations
                 {
                     FavoriteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    VendorId = table.Column<int>(type: "int", nullable: false),
                     AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    UserFavByUserId = table.Column<int>(type: "int", nullable: true),
+                    UserFavToUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Favorites", x => x.FavoriteId);
                     table.ForeignKey(
-                        name: "FK_Favorites_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Favorites_Users_UserFavByUserId",
+                        column: x => x.UserFavByUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Favorites_Users_UserFavToUserId",
+                        column: x => x.UserFavToUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -105,19 +117,24 @@ namespace Roofcare_APIs.Migrations
                 {
                     FeedbackId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FeedbackBy = table.Column<int>(type: "int", nullable: false),
-                    FeedbaclTo = table.Column<int>(type: "int", nullable: false),
                     FeedbackText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<double>(type: "float", nullable: false),
                     FeedbackDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    FeedbackByUserId = table.Column<int>(type: "int", nullable: true),
+                    FeedbackToUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
                     table.ForeignKey(
-                        name: "FK_Feedbacks_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Feedbacks_Users_FeedbackByUserId",
+                        column: x => x.FeedbackByUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Feedbacks_Users_FeedbackToUserId",
+                        column: x => x.FeedbackToUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -133,14 +150,14 @@ namespace Roofcare_APIs.Migrations
                     ValidDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OfferDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OfferImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    AddedByUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Offers", x => x.OfferId);
                     table.ForeignKey(
-                        name: "FK_Offers_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Offers_Users_AddedByUserId",
+                        column: x => x.AddedByUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
@@ -152,8 +169,8 @@ namespace Roofcare_APIs.Migrations
                 {
                     UserProfessionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ProfessionId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    ProfessionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -163,13 +180,13 @@ namespace Roofcare_APIs.Migrations
                         column: x => x.ProfessionId,
                         principalTable: "Professions",
                         principalColumn: "ProfessionId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UserProfessions_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,8 +195,6 @@ namespace Roofcare_APIs.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReportedById = table.Column<int>(type: "int", nullable: false),
-                    ReportedOfferId = table.Column<int>(type: "int", nullable: false),
                     ReportText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReportedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OfferId = table.Column<int>(type: "int", nullable: true),
@@ -208,9 +223,9 @@ namespace Roofcare_APIs.Migrations
                 {
                     SavedOfferId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    OfferId = table.Column<int>(type: "int", nullable: false),
-                    SaveDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    SaveDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OfferId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -220,29 +235,44 @@ namespace Roofcare_APIs.Migrations
                         column: x => x.OfferId,
                         principalTable: "Offers",
                         principalColumn: "OfferId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_SavedOffers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_UserId",
+                name: "IX_Bookings_BookingByUserId",
                 table: "Bookings",
-                column: "UserId");
+                column: "BookingByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favorites_UserId",
+                name: "IX_Bookings_BookingToId",
+                table: "Bookings",
+                column: "BookingToId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Favorites_UserFavByUserId",
                 table: "Favorites",
-                column: "UserId");
+                column: "UserFavByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Feedbacks_UserId",
+                name: "IX_Favorites_UserFavToUserId",
+                table: "Favorites",
+                column: "UserFavToUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedbacks_FeedbackByUserId",
                 table: "Feedbacks",
-                column: "UserId");
+                column: "FeedbackByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedbacks_FeedbackToUserId",
+                table: "Feedbacks",
+                column: "FeedbackToUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OfferReports_OfferId",
@@ -255,9 +285,9 @@ namespace Roofcare_APIs.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offers_UserId",
+                name: "IX_Offers_AddedByUserId",
                 table: "Offers",
-                column: "UserId");
+                column: "AddedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SavedOffers_OfferId",

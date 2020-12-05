@@ -12,7 +12,6 @@ namespace Roofcare_APIs.Models
         [Key]
         public int ProfessionId { get; set; }
         public String ProfessionName { get; set; }
-        [ForeignKey("ProfessionId")]
         public ICollection<UserProfession> UserProfessions { get; set; }
     }
 }

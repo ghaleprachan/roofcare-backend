@@ -11,11 +11,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int SavedOfferId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
-        [ForeignKey("OfferId")]
-        public int OfferId { get; set; }
         public DateTime SaveDate { get; set; }
         public virtual Offer Offer { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -27,9 +27,10 @@ namespace Roofcare_APIs.Services
                                  offer.OfferImage,
                                  offer.PostedDate,
                                  offer.OfferDescription,
-                                 AddedByName = offer.User.FullName,
-                                 AddedByUsername = offer.User.Username,
-                                 AddedByContact = offer.User.Contact
+                                 AddedByName = offer.AddedBy.FullName,
+                                 AddedByUsername = offer.AddedBy.Username,
+                                 AddedByContact = offer.AddedBy.Contact,
+                                 AddedByImage = offer.AddedBy.UserImage
                              }).ToList();
                 return offers;
             }

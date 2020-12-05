@@ -11,15 +11,12 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int OfferId { get; set; }
-        [Required]
         public DateTime PostedDate { get; set; }
         public DateTime ValidDate { get; set; }
         public string OfferDescription { get; set; }
         public string OfferImage { get; set; }
-        public virtual User User { get; set; }
-        [ForeignKey("OfferId")]
+        public virtual User AddedBy { get; set; }
         public ICollection<OfferReport> OfferReports { get; set; }
-        [ForeignKey("OfferId")]
         public ICollection<SavedOffer> SavedOffers { get; set; }
     }
 }

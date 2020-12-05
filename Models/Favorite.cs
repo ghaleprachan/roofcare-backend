@@ -11,15 +11,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int FavoriteId { get; set; }
-        [ForeignKey("UserId")]
-        public int CustomerId { get; set; }
-        [ForeignKey("UserId")]
-        public int VendorId { get; set; }
-        [Required]
         public DateTime AddedDate { get; set; }
-        [NotMapped]
         public virtual User UserFavBy { get; set; }
-        [NotMapped]
-        public virtual User UserFabTo { get; set; }
+        public virtual User UserFavTo { get; set; }
     }
 }

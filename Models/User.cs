@@ -20,19 +20,22 @@ namespace Roofcare_APIs.Models
         public string Contact { get; set; }
         public string Address { get; set; }
         public bool Verified { get; set; }
-        [ForeignKey("UserId")]
-        public ICollection<Booking> Bookings { get; set; }
-        [ForeignKey("UserId")]
+
+        [InverseProperty("BookingBy")]
+        public ICollection<Booking> BookingsBy { get; set; }
+        [InverseProperty("BookingTo")]
+        public ICollection<Booking> BookingsTo { get; set; }
         public ICollection<SavedOffer> SavedOffers { get; set; }
-        [ForeignKey("UserId")]
         public ICollection<UserProfession> UserProfessions { get; set; }
-        [ForeignKey("UserId")]
         public ICollection<OfferReport> OfferReports { get; set; }
-        [ForeignKey("UserId")]
         public ICollection<Offer> Offers { get; set; }
-        [ForeignKey("UserId")]
-        public ICollection<Feedback> Feedbacks { get; set; }
-        [ForeignKey("UserId")]
-        public ICollection<Favorite> Favorites { get; set; }
+        [InverseProperty("FeedbackBy")]
+        public ICollection<Feedback> FeedbacksBy { get; set; }
+        [InverseProperty("FeedbackTo")]
+        public ICollection<Feedback> FeedbacksTo { get; set; }
+        [InverseProperty("UserFavBy")]
+        public ICollection<Favorite> UserFavBy { get; set; }
+        [InverseProperty("UserFavTo")]
+        public ICollection<Favorite> UserFavTo { get; set; }
     }
 }

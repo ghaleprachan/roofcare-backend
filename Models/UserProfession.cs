@@ -11,10 +11,6 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int UserProfessionId { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
-        [ForeignKey("ProfessionId")]
-        public int ProfessionId { get; set; }
         public virtual User User { get; set; }
         public virtual Profession Profession { get; set; }
     }
