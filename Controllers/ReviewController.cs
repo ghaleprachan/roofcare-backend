@@ -11,10 +11,10 @@ namespace Roofcare_APIs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserReviewController : ControllerBase
+    public class ReviewController : ControllerBase
     {
         private ReviewService _reviewService;
-        public UserReviewController(RoofCareDbContext roofCareDbContext)
+        public ReviewController(RoofCareDbContext roofCareDbContext)
         {
             _reviewService = new ReviewService(roofCareDbContext);
         }

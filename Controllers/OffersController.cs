@@ -23,5 +23,11 @@ namespace Roofcare_APIs.Controllers
         {
             return Ok(offersService.GetAllOffers());
         }
+        [HttpGet]
+        [Route("GetUserOffers")]
+        public IActionResult GetUserOffers(string username)
+        {
+            return Ok(offersService.GetUserOffers(username));
+        }
     }
 }

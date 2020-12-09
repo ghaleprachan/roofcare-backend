@@ -20,18 +20,43 @@ namespace Roofcare_APIs.Services
             try
             {
                 var offers = (from offer in _roofCareDbContext.Offers
-                             select new
-                             {
-                                 offer.OfferId,
-                                 offer.ValidDate,
-                                 offer.OfferImage,
-                                 offer.PostedDate,
-                                 offer.OfferDescription,
-                                 AddedByName = offer.AddedBy.FullName,
-                                 AddedByUsername = offer.AddedBy.Username,
-                                 AddedByContact = offer.AddedBy.Contact,
-                                 AddedByImage = offer.AddedBy.UserImage
-                             }).ToList();
+                              select new
+                              {
+                                  offer.OfferId,
+                                  offer.ValidDate,
+                                  offer.OfferImage,
+                                  offer.PostedDate,
+                                  offer.OfferDescription,
+                                  AddedByName = offer.AddedBy.FullName,
+                                  AddedByUsername = offer.AddedBy.Username,
+                                  AddedByContact = offer.AddedBy.Contact,
+                                  AddedByImage = offer.AddedBy.UserImage
+                              }).ToList();
+                return offers;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        internal object GetUserOffers(string username)
+        {
+            try
+            {
+                var offers = (from offer in _roofCareDbContext.Offers
+                              select new
+                              {
+                                  offer.OfferId,
+                                  offer.ValidDate,
+                                  offer.OfferImage,
+                                  offer.PostedDate,
+                                  offer.OfferDescription,
+                                  AddedByName = offer.AddedBy.FullName,
+                                  AddedByUsername = offer.AddedBy.Username,
+                                  AddedByContact = offer.AddedBy.Contact,
+                                  AddedByImage = offer.AddedBy.UserImage
+                              }).Where(u=>u.AddedByUsername == username).ToList();
                 return offers;
             }
             catch (Exception ex)
