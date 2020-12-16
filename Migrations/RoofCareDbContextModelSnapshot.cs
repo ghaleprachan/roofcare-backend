@@ -26,13 +26,13 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("BookingByUserId")
+                    b.Property<int>("BookingById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BookingToUserId")
+                    b.Property<int>("BookingToId")
                         .HasColumnType("int");
 
                     b.Property<bool>("CompletedStatus")
@@ -79,9 +79,9 @@ namespace Roofcare_APIs.Migrations
 
                     b.HasKey("BookingId");
 
-                    b.HasIndex("BookingByUserId");
+                    b.HasIndex("BookingById");
 
-                    b.HasIndex("BookingToUserId");
+                    b.HasIndex("BookingToId");
 
                     b.ToTable("Bookings");
                 });
@@ -96,17 +96,17 @@ namespace Roofcare_APIs.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserFavByUserId")
+                    b.Property<int>("UserFavById")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserFavToUserId")
+                    b.Property<int>("UserFavToId")
                         .HasColumnType("int");
 
                     b.HasKey("FavoriteId");
 
-                    b.HasIndex("UserFavByUserId");
+                    b.HasIndex("UserFavById");
 
-                    b.HasIndex("UserFavToUserId");
+                    b.HasIndex("UserFavToId");
 
                     b.ToTable("Favorites");
                 });
@@ -118,7 +118,7 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("FeedbackByUserId")
+                    b.Property<int>("FeedbackById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FeedbackDate")
@@ -127,7 +127,7 @@ namespace Roofcare_APIs.Migrations
                     b.Property<string>("FeedbackText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FeedbackToUserId")
+                    b.Property<int>("FeedbackToId")
                         .HasColumnType("int");
 
                     b.Property<double>("Rating")
@@ -135,9 +135,9 @@ namespace Roofcare_APIs.Migrations
 
                     b.HasKey("FeedbackId");
 
-                    b.HasIndex("FeedbackByUserId");
+                    b.HasIndex("FeedbackById");
 
-                    b.HasIndex("FeedbackToUserId");
+                    b.HasIndex("FeedbackToId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -149,9 +149,6 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("AddedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("OfferDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -161,12 +158,15 @@ namespace Roofcare_APIs.Migrations
                     b.Property<DateTime>("PostedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ValidDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("OfferId");
 
-                    b.HasIndex("AddedByUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Offers");
                 });
@@ -178,7 +178,7 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("OfferId")
+                    b.Property<int>("OfferId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReportText")
@@ -187,7 +187,7 @@ namespace Roofcare_APIs.Migrations
                     b.Property<DateTime>("ReportedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -221,13 +221,13 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("OfferId")
+                    b.Property<int>("OfferId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SaveDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("SavedOfferId");
@@ -291,10 +291,10 @@ namespace Roofcare_APIs.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("ProfessionId")
+                    b.Property<int>("ProfessionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserProfessionId");
@@ -310,11 +310,15 @@ namespace Roofcare_APIs.Migrations
                 {
                     b.HasOne("Roofcare_APIs.Models.User", "BookingBy")
                         .WithMany("BookingsBy")
-                        .HasForeignKey("BookingByUserId");
+                        .HasForeignKey("BookingById")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "BookingTo")
                         .WithMany("BookingsTo")
-                        .HasForeignKey("BookingToUserId");
+                        .HasForeignKey("BookingToId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("BookingBy");
 
@@ -324,12 +328,16 @@ namespace Roofcare_APIs.Migrations
             modelBuilder.Entity("Roofcare_APIs.Models.Favorite", b =>
                 {
                     b.HasOne("Roofcare_APIs.Models.User", "UserFavBy")
-                        .WithMany("UserFavBy")
-                        .HasForeignKey("UserFavByUserId");
+                        .WithMany("UserFavsBy")
+                        .HasForeignKey("UserFavById")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "UserFavTo")
-                        .WithMany("UserFavTo")
-                        .HasForeignKey("UserFavToUserId");
+                        .WithMany("UserFavsTo")
+                        .HasForeignKey("UserFavToId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("UserFavBy");
 
@@ -340,11 +348,15 @@ namespace Roofcare_APIs.Migrations
                 {
                     b.HasOne("Roofcare_APIs.Models.User", "FeedbackBy")
                         .WithMany("FeedbacksBy")
-                        .HasForeignKey("FeedbackByUserId");
+                        .HasForeignKey("FeedbackById")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "FeedbackTo")
                         .WithMany("FeedbacksTo")
-                        .HasForeignKey("FeedbackToUserId");
+                        .HasForeignKey("FeedbackToId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("FeedbackBy");
 
@@ -353,22 +365,28 @@ namespace Roofcare_APIs.Migrations
 
             modelBuilder.Entity("Roofcare_APIs.Models.Offer", b =>
                 {
-                    b.HasOne("Roofcare_APIs.Models.User", "AddedBy")
+                    b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("Offers")
-                        .HasForeignKey("AddedByUserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("AddedBy");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Roofcare_APIs.Models.OfferReport", b =>
                 {
                     b.HasOne("Roofcare_APIs.Models.Offer", "Offer")
                         .WithMany("OfferReports")
-                        .HasForeignKey("OfferId");
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("OfferReports")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("Offer");
 
@@ -379,11 +397,15 @@ namespace Roofcare_APIs.Migrations
                 {
                     b.HasOne("Roofcare_APIs.Models.Offer", "Offer")
                         .WithMany("SavedOffers")
-                        .HasForeignKey("OfferId");
+                        .HasForeignKey("OfferId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("SavedOffers")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("Offer");
 
@@ -394,11 +416,15 @@ namespace Roofcare_APIs.Migrations
                 {
                     b.HasOne("Roofcare_APIs.Models.Profession", "Profession")
                         .WithMany("UserProfessions")
-                        .HasForeignKey("ProfessionId");
+                        .HasForeignKey("ProfessionId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("Roofcare_APIs.Models.User", "User")
                         .WithMany("UserProfessions")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("Profession");
 
@@ -433,9 +459,9 @@ namespace Roofcare_APIs.Migrations
 
                     b.Navigation("SavedOffers");
 
-                    b.Navigation("UserFavBy");
+                    b.Navigation("UserFavsBy");
 
-                    b.Navigation("UserFavTo");
+                    b.Navigation("UserFavsTo");
 
                     b.Navigation("UserProfessions");
                 });

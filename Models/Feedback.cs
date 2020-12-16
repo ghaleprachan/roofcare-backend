@@ -11,6 +11,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int FeedbackId { get; set; }
+        public int FeedbackById { get; set; }
+        public int FeedbackToId { get; set; }
         public string FeedbackText { get; set; }
         public double Rating { get; set; }
         public DateTime FeedbackDate { get; set; }

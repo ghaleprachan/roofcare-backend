@@ -1,4 +1,5 @@
 ﻿using Roofcare_APIs.Data;
+using Roofcare_APIs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +36,25 @@ namespace Roofcare_APIs.Services
                                                     ByFullName = r.FeedbackBy.FullName,
                                                     ByImage = r.FeedbackBy.UserImage
                                                 }
-                                  }).Where(un => un.Username == userId);
+                                  }).Where(un => un.Username == userId).FirstOrDefault();
                 return userReview;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        internal object AddUserReview(Feedback reviewModel)
+        {
+            try
+            {
+                using (_roofCareDbContext)
+                {
+                    _roofCareDbContext.Feedbacks.Add(reviewModel);
+                    _roofCareDbContext.SaveChanges();
+                    return "Success";
+                }
             }
             catch (Exception ex)
             {

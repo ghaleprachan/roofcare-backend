@@ -11,6 +11,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int FavoriteId { get; set; }
+        public int UserFavById { get; set; }
+        public int UserFavToId { get; set; }
         public DateTime AddedDate { get; set; }
         public virtual User UserFavBy { get; set; }
         public virtual User UserFavTo { get; set; }

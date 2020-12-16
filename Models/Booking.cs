@@ -8,6 +8,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int BookingId { get; set; }
+        public int BookingById { get; set; }
+        public int BookingToId { get; set; }
         public string ServiceType { get; set; }
         public DateTime BookingDate { get; set; }
         public DateTime ServiceDate { get; set; }
@@ -17,7 +19,7 @@ namespace Roofcare_APIs.Models
         public bool VendorAcceptance { get; set; }
         public bool CompletedStatus { get; set; }
         //BILL
-       
+
         public double? ServiceCharge { get; set; }
         public double? TravellingCost { get; set; }
         public double? DiscountPercentage { get; set; }
@@ -26,9 +28,9 @@ namespace Roofcare_APIs.Models
         public bool? PaidStatus { get; set; }
         public DateTime? IssuedDate { get; set; }
 
-        
-        public virtual User BookingBy{ get; set; }
-        
-        public virtual User BookingTo{ get; set; }
+
+        public virtual User BookingBy { get; set; }
+
+        public virtual User BookingTo { get; set; }
     }
 }

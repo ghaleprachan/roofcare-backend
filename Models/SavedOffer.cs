@@ -12,7 +12,9 @@ namespace Roofcare_APIs.Models
         [Key]
         public int SavedOfferId { get; set; }
         public DateTime SaveDate { get; set; }
+        public int OfferId { get; set; }
         public virtual Offer Offer { get; set; }
+        public int UserId { get; set; }
         public virtual User User { get; set; }
     }
 }

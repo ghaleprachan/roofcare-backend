@@ -9,7 +9,6 @@ namespace Roofcare_APIs.Data
         {
 
         }
-        
 
         public DbSet<User> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -23,7 +22,89 @@ namespace Roofcare_APIs.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.FeedbackBy) //This is from feedback class
+                .WithMany(u => u.FeedbacksBy) // This is from user class
+                .IsRequired()
+                .HasForeignKey(f => f.FeedbackById) // This is from feedback class
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.FeedbackTo) //This is from feedback class
+                .WithMany(u => u.FeedbacksTo) // This is from user class
+                .IsRequired()
+                .HasForeignKey(f => f.FeedbackToId) // This is from feedback class
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.BookingBy)
+                .WithMany(u => u.BookingsBy)
+                .IsRequired()
+                .HasForeignKey(b => b.BookingById)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Booking>()
+                .HasOne(b => b.BookingTo)
+                .WithMany(u => u.BookingsTo)
+                .IsRequired()
+                .HasForeignKey(b => b.BookingToId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Favorite>()
+                .HasOne(f => f.UserFavBy)
+                .WithMany(u => u.UserFavsBy)
+                .IsRequired()
+                .HasForeignKey(f => f.UserFavById)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<Favorite>()
+                .HasOne(f => f.UserFavTo)
+                .WithMany(u => u.UserFavsTo)
+                .IsRequired()
+                .HasForeignKey(f => f.UserFavToId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<OfferReport>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.OfferReports)
+                .IsRequired()
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<OfferReport>()
+                .HasOne(o => o.Offer)
+                .WithMany(u => u.OfferReports)
+                .IsRequired()
+                .HasForeignKey(o => o.OfferId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<SavedOffer>()
+                .HasOne(s => s.User)
+                .WithMany(u => u.SavedOffers)
+                .IsRequired()
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<SavedOffer>()
+                .HasOne(s => s.Offer)
+                .WithMany(o => o.SavedOffers)
+                .IsRequired()
+                .HasForeignKey(s => s.OfferId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<UserProfession>()
+                .HasOne(up => up.User)
+                .WithMany(o => o.UserProfessions)
+                .IsRequired()
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            modelBuilder.Entity<UserProfession>()
+               .HasOne(up => up.Profession)
+               .WithMany(p => p.UserProfessions)
+               .IsRequired()
+               .HasForeignKey(s => s.ProfessionId)
+               .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }

@@ -15,7 +15,8 @@ namespace Roofcare_APIs.Models
         public DateTime ValidDate { get; set; }
         public string OfferDescription { get; set; }
         public string OfferImage { get; set; }
-        public virtual User AddedBy { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
         public ICollection<OfferReport> OfferReports { get; set; }
         public ICollection<SavedOffer> SavedOffers { get; set; }
     }

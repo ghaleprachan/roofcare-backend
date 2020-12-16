@@ -11,6 +11,8 @@ namespace Roofcare_APIs.Models
     {
         [Key]
         public int Id { get; set; }
+        public int UserId { get; set; }
+        public int OfferId { get; set; }
         public string ReportText { get; set; }
         public DateTime ReportedDate { get; set; }
         public virtual Offer Offer { get; set; }

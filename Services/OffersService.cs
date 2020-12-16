@@ -27,10 +27,10 @@ namespace Roofcare_APIs.Services
                                   offer.OfferImage,
                                   offer.PostedDate,
                                   offer.OfferDescription,
-                                  AddedByName = offer.AddedBy.FullName,
-                                  AddedByUsername = offer.AddedBy.Username,
-                                  AddedByContact = offer.AddedBy.Contact,
-                                  AddedByImage = offer.AddedBy.UserImage
+                                  AddedByName = offer.User.FullName,
+                                  AddedByUsername = offer.User.Username,
+                                  AddedByContact = offer.User.Contact,
+                                  AddedByImage = offer.User.UserImage
                               }).ToList();
                 return offers;
             }
@@ -52,10 +52,10 @@ namespace Roofcare_APIs.Services
                                   offer.OfferImage,
                                   offer.PostedDate,
                                   offer.OfferDescription,
-                                  AddedByName = offer.AddedBy.FullName,
-                                  AddedByUsername = offer.AddedBy.Username,
-                                  AddedByContact = offer.AddedBy.Contact,
-                                  AddedByImage = offer.AddedBy.UserImage
+                                  AddedByName = offer.User.FullName,
+                                  AddedByUsername = offer.User.Username,
+                                  AddedByContact = offer.User.Contact,
+                                  AddedByImage = offer.User.UserImage
                               }).Where(u=>u.AddedByUsername == username).ToList();
                 return offers;
             }
