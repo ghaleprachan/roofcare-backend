@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Roofcare_APIs.Data;
+using Roofcare_APIs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,31 @@ namespace Roofcare_APIs.Services
             }
         }
 
+        internal object DeleteOffer(int offerId)
+        {
+            try
+            {
+                using (_roofCareDbContext)
+                {
+                    Offer oldOffer = _roofCareDbContext.Offers.Find(offerId);
+                    if (oldOffer != null)
+                    {
+                        _roofCareDbContext.Remove(oldOffer);
+                        _roofCareDbContext.SaveChanges();
+                        return "Delete Successful";
+                    }
+                    else
+                    {
+                        return "Offer doesn't exists!";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         internal object GetUserOffers(string username)
         {
             try
@@ -56,7 +82,7 @@ namespace Roofcare_APIs.Services
                                   AddedByUsername = offer.User.Username,
                                   AddedByContact = offer.User.Contact,
                                   AddedByImage = offer.User.UserImage
-                              }).Where(u=>u.AddedByUsername == username).ToList();
+                              }).Where(u => u.AddedByUsername == username).ToList();
                 return offers;
             }
             catch (Exception ex)

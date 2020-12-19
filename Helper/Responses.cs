@@ -8,12 +8,13 @@ namespace Roofcare_APIs.Helper
 {
     public class Responses
     {
-        public static object AuthenticationResponse(bool Success, string Message, string Username, string FullName, string UserType, string UserImage)
+        public static object AuthenticationResponse(bool Success, int UserId, string Message, string Username, string FullName, string UserType, string UserImage)
         {
             return new AuthenticationModel()
             {
                 Success = Success,
                 Message = Message,
+                UserId = UserId,
                 Username = Username,
                 FullName = FullName,
                 UserType = UserType,

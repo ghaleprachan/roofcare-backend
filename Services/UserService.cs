@@ -27,6 +27,7 @@ namespace Roofcare_APIs.Services
                     var user = (from u in _roofCareDbContext.Users
                                 select new
                                 {
+                                    u.UserId,
                                     u.Username,
                                     u.Password,
                                     u.FullName,
@@ -36,17 +37,17 @@ namespace Roofcare_APIs.Services
                                 && x.Password.Equals(userCredential.Password));
                     if (user != null)
                     {
-                        return Responses.AuthenticationResponse(true, "Log in successful", user.Username, user.FullName, user.UserType, user.UserImage);
+                        return Responses.AuthenticationResponse(true, user.UserId, "Log in successful", user.Username, user.FullName, user.UserType, user.UserImage);
                     }
                     else
                     {
-                        return Responses.AuthenticationResponse(false, "Invalid username or password.", null, null, null, null);
+                        return Responses.AuthenticationResponse(false, 0, "Invalid username or password.", null, null, null, null);
                     }
                 }
             }
             catch (Exception ex)
             {
-                return Responses.AuthenticationResponse(false, ex.Message, null, null, null, null);
+                return Responses.AuthenticationResponse(false, 0, ex.Message, null, null, null, null);
             }
         }
 

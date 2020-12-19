@@ -29,5 +29,11 @@ namespace Roofcare_APIs.Controllers
         {
             return Ok(offersService.GetUserOffers(username));
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int offerId)
+        {
+            return Ok(offersService.DeleteOffer(offerId));
+        }
     }
 }

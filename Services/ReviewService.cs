@@ -1,5 +1,6 @@
 ﻿using Roofcare_APIs.Data;
 using Roofcare_APIs.Models;
+using Roofcare_APIs.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,20 +46,29 @@ namespace Roofcare_APIs.Services
             }
         }
 
-        internal object AddUserReview(Feedback reviewModel)
+        internal object AddUserReview(AddFeedbackModel reviewModel)
         {
             try
             {
                 using (_roofCareDbContext)
                 {
-                    _roofCareDbContext.Feedbacks.Add(reviewModel);
+                    Feedback feedback = new Feedback
+                    {
+                        FeedbackById = reviewModel.FeedbackById,
+                        FeedbackToId = reviewModel.FeedbackToId,
+                        Rating = reviewModel.Rating,
+                        FeedbackText = reviewModel.FeedbackText,
+                        FeedbackDate = DateTime.Now
+                    };
+
+                    _roofCareDbContext.Feedbacks.Add(feedback);
                     _roofCareDbContext.SaveChanges();
-                    return "Success";
+                    return "{ Success: true}";
                 }
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return "Success:false";
             }
         }
     }

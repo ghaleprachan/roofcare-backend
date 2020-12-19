@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Roofcare_APIs.Data;
 using Roofcare_APIs.Models;
 using Roofcare_APIs.Services;
+using Roofcare_APIs.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Roofcare_APIs.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Feedback reviewModel)
+        public IActionResult Post(AddFeedbackModel reviewModel)
         {
             return Ok(_reviewService.AddUserReview(reviewModel));
         }

@@ -9,6 +9,7 @@ namespace Roofcare_APIs.UserModels
     {
         public bool Success { get; set; }
         public string Message{ get; set; }
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string FullName { get; set; }
         public string UserType { get; set; }
