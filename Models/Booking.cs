@@ -15,7 +15,6 @@ namespace Roofcare_APIs.Models
         public DateTime ServiceDate { get; set; }
         public string CustomerAddress { get; set; }
         public string ProblemDescription { get; set; }
-        public string ProblemImage { get; set; }
         public bool VendorAcceptance { get; set; }
         public bool CompletedStatus { get; set; }
         //BILL
@@ -24,8 +23,6 @@ namespace Roofcare_APIs.Models
         public double? TravellingCost { get; set; }
         public double? DiscountPercentage { get; set; }
         public double? TotalCharge { get; set; }
-        public bool? CustomerAcceptance { get; set; }
-        public bool? PaidStatus { get; set; }
         public DateTime? IssuedDate { get; set; }
 
 

@@ -58,3 +58,4 @@ D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\
 D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\ref\Roofcare APIs.dll
 D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.pdb
 D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\obj\Debug\net5.0\Roofcare APIs.genruntimeconfig.cache
+D:\Freelancing\Project Rajiv\Development\Backend\Roofcare APIs\bin\Debug\net5.0\libman.json
