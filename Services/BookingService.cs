@@ -15,7 +15,8 @@ namespace Roofcare_APIs.Services
         }
 
         internal object GetBookings(int userId, bool isBooked)
-        {
+        { // if is booked is true than shows bookings
+            // if the booked in false than shows booking requests
             try
             {
                 var bookings = (from u in _dbContext.Users

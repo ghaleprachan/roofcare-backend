@@ -10,7 +10,7 @@ namespace Roofcare_APIs.UserModels
         public int BookingById { get; set; }
         public int BookingToId { get; set; }
         public string ServiceType { get; set; }
-        public DateTime ServiceDate { get; set; }
+        public string ServiceDate { get; set; }
         public string CustomerAddress { get; set; }
         public string ProblemDescription { get; set; }
     }

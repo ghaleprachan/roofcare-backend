@@ -18,7 +18,7 @@ namespace Roofcare_APIs.Services
             _dbContext = dbContext;
         }
 
-        internal object AddBookingRequest(UserModels.BookingRequestModel requestModel)
+        internal object AddBookingRequest(BookingRequestModel requestModel)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Roofcare_APIs.Services
                     BookingToId = requestModel.BookingToId,
                     ServiceType = requestModel.ServiceType,
                     BookingDate = DateTime.Now,
-                    ServiceDate = requestModel.ServiceDate,
+                    ServiceDate = Convert.ToDateTime(requestModel.ServiceDate),
                     CustomerAddress = requestModel.CustomerAddress,
                     ProblemDescription = requestModel.ProblemDescription,
                     VendorAcceptance = false,
