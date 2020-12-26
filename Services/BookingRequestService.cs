@@ -57,6 +57,7 @@ namespace Roofcare_APIs.Services
                     acc_booking.DiscountPercentage = billModel.DiscountPercentage;
                     acc_booking.TotalCharge = billModel.TotalCharge;
                     acc_booking.IssuedDate = DateTime.Now;
+                    acc_booking.VendorAcceptance = true;
                     _dbContext.Entry(acc_booking).State = EntityState.Modified;
                     _dbContext.SaveChanges();
                     return "{Success: true}";

@@ -25,5 +25,24 @@ namespace Roofcare_APIs.Controllers
         {
             return Ok(bookingService.GetBookings(userId, isBooked));
         }
+
+        [HttpGet]
+        [Route("GetBookingHistory")]
+        public IActionResult GetBookingHistory(int userId)
+        {
+            return Ok(bookingService.GetBookingHistory(userId));
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int bookingId)
+        {
+            return Ok(bookingService.DeleteBooking(bookingId));
+        }
+
+        [HttpPut]
+        public IActionResult Put(int bookingId)
+        {
+            return Ok(bookingService.UpdateCompletedStatus(bookingId));
+        }
     }
 }
