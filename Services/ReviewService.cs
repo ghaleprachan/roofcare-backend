@@ -66,7 +66,7 @@ namespace Roofcare_APIs.Services
                     return "{ Success: true}";
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return "Success:false";
             }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Roofcare_APIs.Data;
 using Roofcare_APIs.Models;
@@ -16,15 +17,30 @@ namespace Roofcare_APIs.Controllers
     public class RegisterController : ControllerBase
     {
         private RegisterService register;
-        public RegisterController(RoofCareDbContext dbContext)
+        [Obsolete]
+        public RegisterController(RoofCareDbContext dbContext, IHostingEnvironment env)
         {
-            register = new RegisterService(dbContext);
+            register = new RegisterService(dbContext, env);
         }
 
         [HttpPost]
         public IActionResult Post(RegisterModel user)
         {
             return Ok(register.RegisterNewUser(user));
+        }
+        [HttpPost]
+        [Route("AddProfession")]
+        public IActionResult AddProfession(int userId, int professionId)
+        {
+            return Ok(register.AddProfession(userId, professionId));
+        }
+
+        [HttpPost]
+        [Route("AddProfileImage")]
+        [Obsolete]
+        public IActionResult AddProfileImage(ProfileImageModel model)
+        {
+            return Ok(register.AddProfileImage(model));
         }
     }
 }
