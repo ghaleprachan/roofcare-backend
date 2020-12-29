@@ -92,17 +92,17 @@ namespace Roofcare_APIs.Services
         {
             try
             {
-                string folderLocation = "ProfileImg/";
+                string folderLocation = "MyUploads/ProfileImages/";
                 string imageName = ((RandomString(10) + DateTime.Now) + ".jpg").Replace(":", String.Empty);
 
                 byte[] img = LoadImage(bitmapString);
 
-                string filePath = System.IO.Path.Combine(_env.WebRootPath + folderLocation +
+                string filePath = Path.Combine(/*_env.WebRootPath + */folderLocation +
                     Path.GetFileName(imageName));
 
                 File.WriteAllBytes(filePath, img);
 
-                string finalLocation = "ProfileImages/";
+                string finalLocation = "MyUploads/ProfileImages/";
                 return (finalLocation + imageName);
             }
             catch (Exception)
