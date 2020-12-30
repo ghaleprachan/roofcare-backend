@@ -14,7 +14,7 @@ namespace Roofcare_APIs.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private UserService _userService;
+        private readonly UserService _userService;
         public UserController(RoofCareDbContext roofCareDbContext)
         {
             _userService = new UserService(roofCareDbContext);
@@ -33,5 +33,21 @@ namespace Roofcare_APIs.Controllers
             return Ok(UserService.GetProfileDetails(id));
         }
 
+        [HttpPut]
+        public IActionResult Put(int userId, String oldPassword, String newPassword)
+        {
+            return Ok(_userService.ChangePassword(userId, oldPassword, newPassword));
+        }
+
+        [HttpGet]
+        public IActionResult Get(int userId)
+        {
+            return Ok(_userService.GetUserSkills(userId));
+        }
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            return Ok(_userService.DeleteProfession(id));
+        }
     }
 }

@@ -14,15 +14,10 @@ namespace Roofcare_APIs.Services
     {
         private const string baseLocation = "MyUploads/";
         private readonly RoofCareDbContext _dbContext;
-        [Obsolete]
-        private readonly IHostingEnvironment _env;
-        [Obsolete]
-        public OfferService(RoofCareDbContext dbContext, IHostingEnvironment env)
+        public OfferService(RoofCareDbContext dbContext)
         {
             _dbContext = dbContext;
-            _env = env;
         }
-        [Obsolete]
         internal object AddOffer(AddOfferModel offerModel)
         {
             try
@@ -46,7 +41,6 @@ namespace Roofcare_APIs.Services
             }
         }
 
-        [Obsolete]
         private string ParseImage(String bitmapString)
         {
             try

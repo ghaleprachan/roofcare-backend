@@ -15,15 +15,12 @@ namespace Roofcare_APIs.Services
 {
     public class RegisterService
     {
-        private RoofCareDbContext _dbContext;
-        [Obsolete]
-        private IHostingEnvironment _env;
+        private const string baseLocation = "MyUploads/";
+        private readonly RoofCareDbContext _dbContext;
 
-        [Obsolete]
-        public RegisterService(RoofCareDbContext dbContext, IHostingEnvironment env)
+        public RegisterService(RoofCareDbContext dbContext)
         {
             _dbContext = dbContext;
-            _env = env;
         }
 
         internal object RegisterNewUser(RegisterModel user)
@@ -63,7 +60,12 @@ namespace Roofcare_APIs.Services
             }
         }
 
-        [Obsolete]
+        internal object GetServices(int userId)
+        {
+            var services = _dbContext.Professions.ToList();
+            return HelperResponse.HelperRegister(true, userId, services);
+        }
+
         internal object AddProfileImage(ProfileImageModel model)
         {
             try
@@ -74,11 +76,22 @@ namespace Roofcare_APIs.Services
                     user.UserImage = ParseImage(model.userImage);
                     _dbContext.Entry(user).State = EntityState.Modified;
                     _dbContext.SaveChanges();
-                    return "{success:true, image:"+user.UserImage+"}";
+
+                    ImageUploadResponse imageResponse = new ImageUploadResponse
+                    {
+                        Success = true,
+                        ImageUrl = user.UserImage
+                    };
+                    return imageResponse;
                 }
                 else
                 {
-                    return "{success:false}";
+                    ImageUploadResponse imageResponse = new ImageUploadResponse
+                    {
+                        Success = false,
+                        ImageUrl = null
+                    };
+                    return imageResponse;
                 }
             }
             catch (Exception ex)
@@ -87,23 +100,20 @@ namespace Roofcare_APIs.Services
             }
         }
 
-        [Obsolete]
         private string ParseImage(String bitmapString)
         {
             try
             {
-                string folderLocation = "MyUploads/ProfileImages/";
+                string folderLocation = baseLocation;
                 string imageName = ((RandomString(10) + DateTime.Now) + ".jpg").Replace(":", String.Empty);
 
                 byte[] img = LoadImage(bitmapString);
 
-                string filePath = Path.Combine(/*_env.WebRootPath + */folderLocation +
+                string filePath = Path.Combine(folderLocation +
                     Path.GetFileName(imageName));
 
                 File.WriteAllBytes(filePath, img);
-
-                string finalLocation = "MyUploads/ProfileImages/";
-                return (finalLocation + imageName);
+                return filePath;
             }
             catch (Exception)
             {
@@ -131,6 +141,14 @@ namespace Roofcare_APIs.Services
                 UserProfession userProfession = _dbContext.UserProfessions.Where(u => u.UserId == userId && u.ProfessionId == professionId).FirstOrDefault();
                 if (userProfession == null)
                 {
+                    User user = _dbContext.Users.Find(userId);
+                    if(user.UserType == "Customer")
+                    {
+                        user.UserType = "Vendor";
+                        _dbContext.Entry(user).State = EntityState.Modified;
+                        _dbContext.SaveChanges();
+                    }
+
                     UserProfession new_profession = new UserProfession
                     {
                         UserId = userId,

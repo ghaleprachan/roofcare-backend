@@ -16,11 +16,10 @@ namespace Roofcare_APIs.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private RegisterService register;
-        [Obsolete]
-        public RegisterController(RoofCareDbContext dbContext, IHostingEnvironment env)
+        private readonly RegisterService register;
+        public RegisterController(RoofCareDbContext dbContext)
         {
-            register = new RegisterService(dbContext, env);
+            register = new RegisterService(dbContext);
         }
 
         [HttpPost]
@@ -37,10 +36,15 @@ namespace Roofcare_APIs.Controllers
 
         [HttpPost]
         [Route("AddProfileImage")]
-        [Obsolete]
         public IActionResult AddProfileImage(ProfileImageModel model)
         {
             return Ok(register.AddProfileImage(model));
+        }
+
+        [HttpGet]
+        public IActionResult Get(int userId)
+        {
+            return Ok(register.GetServices(userId));
         }
     }
 }

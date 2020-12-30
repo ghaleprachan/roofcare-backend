@@ -17,14 +17,12 @@ namespace Roofcare_APIs.Controllers
     {
         private readonly OfferService offerService;
 
-        [Obsolete]
-        public OfferController(RoofCareDbContext dbContext, IHostingEnvironment env)
+        public OfferController(RoofCareDbContext dbContext)
         {
-            offerService = new OfferService(dbContext, env);
+            offerService = new OfferService(dbContext);
         }
 
         [HttpPost]
-        [Obsolete]
         public IActionResult Post(AddOfferModel offerModels)
         {
             return Ok(offerService.AddOffer(offerModels));

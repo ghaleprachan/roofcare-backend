@@ -51,6 +51,57 @@ namespace Roofcare_APIs.Services
             }
         }
 
+        internal object DeleteProfession(int id)
+        {
+            UserProfession userProfession = _roofCareDbContext.UserProfessions.Find(id);
+            if (userProfession != null)
+            {
+                _roofCareDbContext.UserProfessions.Remove(userProfession);
+                _roofCareDbContext.SaveChanges();
+                return "Success";
+            }
+            else
+            {
+                return "Already Deleted";
+            }
+        }
+
+        internal object GetUserSkills(int userId)
+        {
+            var userSkills = (from s in _roofCareDbContext.UserProfessions
+                              select new
+                              {
+                                  s.UserProfessionId,
+                                  s.UserId,
+                                  s.ProfessionId,
+                                  s.Profession.ProfessionName
+                              }).Where(u => u.UserId == userId);
+            return userSkills;
+        }
+
+        internal object ChangePassword(int userId, string oldPassword, string newPassword)
+        {
+            User user = _roofCareDbContext.Users.Find(userId);
+            if (user != null)
+            {
+                if (user.Password.Equals(oldPassword))
+                {
+                    user.Password = newPassword;
+                    _roofCareDbContext.Entry(user).State = EntityState.Modified;
+                    _roofCareDbContext.SaveChanges();
+                    return "success";
+                }
+                else
+                {
+                    return "failed";
+                }
+            }
+            else
+            {
+                return "Invalid user token provided!";
+            }
+        }
+
         internal static object GetProfileDetails(string id)
         {
             try
