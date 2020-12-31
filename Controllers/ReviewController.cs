@@ -31,5 +31,12 @@ namespace Roofcare_APIs.Controllers
         {
             return Ok(_reviewService.AddUserReview(reviewModel));
         }
+
+        [HttpGet]
+        [Route("GetRatings")]
+        public IActionResult GetRatings(int userId)
+        {
+            return Ok(_reviewService.GetRatings(userId));
+        }
     }
 }

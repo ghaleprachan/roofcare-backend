@@ -46,6 +46,57 @@ namespace Roofcare_APIs.Services
             }
         }
 
+        internal object GetRatings(int id)
+        {
+            try
+            {
+                int fivestar = (from feedback in _roofCareDbContext.Feedbacks
+                                select new
+                                {
+                                    feedback.Rating,
+                                    feedback.FeedbackToId,
+                                }).Where(user => user.FeedbackToId.Equals(id) && Math.Round(user.Rating, 1).Equals(5)).ToList().Count();
+
+                int fourstart = (from feedback in _roofCareDbContext.Feedbacks
+                                 select new
+                                 {
+                                     feedback.Rating,
+                                     feedback.FeedbackToId,
+                                 }).Where(user => user.FeedbackToId.Equals(id) && Math.Round(user.Rating, 0).Equals(4)).ToList().Count();
+
+                int threestar = (from feedback in _roofCareDbContext.Feedbacks
+                                 select new
+                                 {
+                                     feedback.Rating,
+                                     feedback.FeedbackToId,
+                                 }).Where(user => user.FeedbackToId.Equals(id) && Math.Round(user.Rating, 0).Equals(3)).ToList().Count();
+
+                int twostar = (from feedback in _roofCareDbContext.Feedbacks
+                               select new
+                               {
+                                   feedback.Rating,
+                                   feedback.FeedbackToId,
+                               }).Where(user => user.FeedbackToId.Equals(id) && Math.Round(user.Rating, 0).Equals(2)).ToList().Count();
+
+                int onestar = (from feedback in _roofCareDbContext.Feedbacks
+                               select new
+                               {
+                                   feedback.Rating,
+                                   feedback.FeedbackToId,
+                               }).Where(user => user.FeedbackToId.Equals(id) && Math.Round(user.Rating, 0).Equals(1)).ToList().Count();
+
+                double rating = (double)(5 * fivestar + 4 * fourstart + 3 * threestar + 2 * twostar + 1 * onestar) / (onestar + twostar + threestar + fourstart + fivestar);
+
+                rating = Math.Round(rating, 1);
+
+                return new Response { Success = true, Message = rating.ToString() };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Success = false, Message = ex.Message };
+            }
+        }
+
         internal object AddUserReview(AddFeedbackModel reviewModel)
         {
             try
