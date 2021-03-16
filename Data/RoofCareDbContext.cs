@@ -19,6 +19,7 @@ namespace Roofcare_APIs.Data
         public DbSet<Profession> Professions { get; set; }
         public DbSet<SavedOffer> SavedOffers { get; set; }
         public DbSet<UserProfession> UserProfessions { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
