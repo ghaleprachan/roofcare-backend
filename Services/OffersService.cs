@@ -32,7 +32,7 @@ namespace Roofcare_APIs.Services
                                   AddedByUsername = offer.User.Username,
                                   AddedByContact = offer.User.Contact,
                                   AddedByImage = offer.User.UserImage
-                              }).ToList();
+                              }).ToList().OrderByDescending(d=>d.PostedDate);
                 return offers;
             }
             catch (Exception ex)

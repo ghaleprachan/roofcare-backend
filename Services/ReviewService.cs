@@ -88,7 +88,7 @@ namespace Roofcare_APIs.Services
                 double rating = (double)(5 * fivestar + 4 * fourstart + 3 * threestar + 2 * twostar + 1 * onestar) / (onestar + twostar + threestar + fourstart + fivestar);
 
                 rating = Math.Round(rating, 1);
-
+                
                 return new Response { Success = true, Message = rating.ToString() };
             }
             catch (Exception ex)

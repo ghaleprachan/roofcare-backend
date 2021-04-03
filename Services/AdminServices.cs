@@ -51,6 +51,40 @@ namespace Roofcare_APIs.Services
             }
         }
 
+        internal object GetProfessions()
+        {
+            var professions = _dbContext.Professions.Select(p => new
+            {
+                p.ProfessionId,
+                p.ProfessionName
+            }).ToList();
+
+            AdminResponse response = new()
+            {
+                Success = true,
+                Professions = professions
+            };
+            return response;
+
+            throw new NotImplementedException();
+        }
+
+        internal object DeleteProefession(int id)
+        {
+            Profession profession = _dbContext.Professions.Find(id);
+            if (profession != null)
+            {
+                _dbContext.Professions.Remove(profession);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            throw new NotImplementedException();
+        }
+
         internal object UpdateProfession(int id, string professionName)
         {
             var old_profession = _dbContext.Professions.Where(p => p.ProfessionId == id).FirstOrDefault();
@@ -78,5 +112,11 @@ namespace Roofcare_APIs.Services
                 return false;
             }
         }
+    }
+
+    class AdminResponse
+    {
+        public bool Success { get; set; }
+        public dynamic Professions { get; set; }
     }
 }
